@@ -4,8 +4,9 @@ from flask_cors import CORS
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-# Get MongoDB URI from environment variable (set this in Heroku config)
-uri = os.getenv("MONGODB_URI", "mongodb+srv://aum:Sept2020@cluster0.jvtzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+# Get MongoDB URI from environment variables
+uri = os.getenv('MONGODB_URI')  # Heroku will automatically use the value set in config
+
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 app = Flask(__name__)
