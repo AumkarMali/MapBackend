@@ -1,9 +1,11 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-uri = "mongodb+srv://aum:Sept2020@cluster0.jvtzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+# Get MongoDB URI from environment variable (set this in Heroku config)
+uri = os.getenv("MONGODB_URI", "mongodb+srv://aum:Sept2020@cluster0.jvtzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 app = Flask(__name__)
@@ -30,7 +32,6 @@ def add_user(username, password):
 @app.route('/')
 def index():
     return "Welcome"
-
 
 @app.route('/api/data', methods=['POST'])
 def add_user_route():
@@ -66,7 +67,6 @@ def check_user():
             return jsonify({"exists": False, "message": "Incorrect password"}), 401
     else:
         return jsonify({"exists": False, "message": "Username not found"}), 404
-
 
 if __name__ == '__main__':
     app.run(debug=True)
