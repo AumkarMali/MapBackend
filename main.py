@@ -29,7 +29,7 @@ def add_user(username, password):
 
 @app.route('/')
 def index():
-    return ""
+    return "Welcome"
 
 
 @app.route('/api/data', methods=['POST'])
@@ -69,4 +69,4 @@ def check_user():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True)
