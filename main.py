@@ -27,6 +27,11 @@ def add_user(username, password):
     except Exception as e:
         print(f"Failed to insert user: {e}")
 
+@app.route('/')
+def index():
+    return ""
+
+
 @app.route('/api/data', methods=['POST'])
 def add_user_route():
     # Retrieve JSON data from the request body
